@@ -1,66 +1,75 @@
-## Foundry
+# Foundry DeFi Stablecoin
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This is a section of the Cyfrin Advanced Foundry Solidity Course. Course complete.
 
-Foundry consists of:
+# Getting Started
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Requirements
 
-## Documentation
+- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [foundry](https://getfoundry.sh/)
 
-https://book.getfoundry.sh/
+## Quickstart
 
-## Usage
-
-### Build
-
-```shell
-$ forge build
+```
+git clone https://github.com/fsosa98/foundry-defi-stablecoin
+cd foundry-defi-stablecoin
+forge build
 ```
 
-### Test
+# Usage
 
-```shell
-$ forge test
+## Start a local node
+
+```
+make anvil
 ```
 
-### Format
+## Deploy
 
-```shell
-$ forge fmt
+This will default to your local node. You need to have it running in another terminal in order for it to deploy.
+
+```
+make deploy
 ```
 
-### Gas Snapshots
+## Deploy - Other Network
 
-```shell
-$ forge snapshot
+[See below](#deployment-to-a-testnet-or-mainnet)
+
+## Testing
+
+```
+forge test
 ```
 
-### Anvil
+### Test Coverage
 
-```shell
-$ anvil
+```
+forge coverage
 ```
 
-### Deploy
+# Deployment to a testnet or mainnet
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+1. Setup environment variables
+
+You'll want to set your `SEPOLIA_RPC_URL` and `PRIVATE_KEY` as environment variables. You can add them to a `.env` file, similar to what you see in `.env.example`.
+Optionally, add your `ETHERSCAN_API_KEY` if you want to verify your contract on [Etherscan](https://etherscan.io/).
+
+2. Get testnet ETH
+
+3. Deploy
+
+```
+make deploy ARGS="--network sepolia"
 ```
 
-### Cast
+## Estimate gas
 
-```shell
-$ cast <subcommand>
+You can estimate how much gas things cost by running:
+
+```
+forge snapshot
 ```
 
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+And you'll see an output file called `.gas-snapshot`
